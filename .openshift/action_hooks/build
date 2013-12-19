@@ -54,4 +54,4 @@ for ext in "${!PHP_PECL[@]}"; do
 done
 
 # Check NodeJS
-check_node
+#check_node
