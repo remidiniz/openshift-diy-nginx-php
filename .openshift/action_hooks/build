@@ -7,28 +7,48 @@ set -e
 # Not a git repository: '.'
 unset GIT_DIR
 
-
 umask 077
 
 # Load common
 source ${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/common
 
 # Configure versions
+<<<<<<< HEAD
 NGINX_VERSION='1.9.5'
+=======
+NGINX_VERSION='1.7.10'
+>>>>>>> branch 'master' of https://github.com/remidiniz/openshift-diy-nginx-php.git
 ZLIB_VERSION='1.2.8'
+<<<<<<< HEAD
 PCRE_VERSION='8.37'
+=======
+PCRE_VERSION='8.36'
+>>>>>>> branch 'master' of https://github.com/remidiniz/openshift-diy-nginx-php.git
 
+<<<<<<< HEAD
 PHP_VERSION='5.6.14'
 ICU_VERSION='55.1'
+=======
+PHP_VERSION='5.6.6'
+ICU_VERSION='54.1'
+>>>>>>> branch 'master' of https://github.com/remidiniz/openshift-diy-nginx-php.git
 
 LIBMCRYPT_VERSION='2.5.8'
-LIBTOOL_VERSION='2.4.2'
+LIBTOOL_VERSION='2.4.6'
+RE2C_VERSION='0.14.1'
+BISON_VERSION='2.7.1'
 
+<<<<<<< HEAD
 NODE_VERSION='0.10.12' #'0.10.12'
+=======
+# Uncomment the following install it.
+#NODE_VERSION='0.12.0'
+#PHALCON_VERSION='1.3.4'
+>>>>>>> branch 'master' of https://github.com/remidiniz/openshift-diy-nginx-php.git
 
 declare -A PHP_PECL
 declare -A PHP_PECL_CONFIGURE
-PHP_PECL=( ["mongo"]='1.4.1' )
+PHP_PECL=( ["mongo"]='1.6.4' ["apcu"]='4.0.7' )
 PHP_PECL_CONFIGURE=( )
 
 # Setup dir references
@@ -37,11 +57,18 @@ BUILD_DIR=${OPENSHIFT_TMP_DIR}/build
 CONFIG_DIR=${OPENSHIFT_DIY_DIR}/conf
 TEMPLATE_DIR=${OPENSHIFT_REPO_DIR}/.openshift/tmpl
 
+# Push the libs path to the PATH
+export PATH=${ROOT_DIR}/libs/bin:$PATH
+
 # Load functions
+source ${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/build_util
 source ${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/build_nginx
 source ${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/build_php_libs
 source ${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/build_php
+<<<<<<< HEAD
 #source ${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/build_node
+=======
+>>>>>>> branch 'master' of https://github.com/remidiniz/openshift-diy-nginx-php.git
 
 # Check nginx
 check_nginx
@@ -54,5 +81,11 @@ for ext in "${!PHP_PECL[@]}"; do
     check_pecl ${ext} ${PHP_PECL["$ext"]} ${PHP_PECL_CONFIGURE["$ext"]};
 done
 
+<<<<<<< HEAD
 # Check NodeJS
 #check_node
+=======
+# Extra
+source ${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/build_node
+source ${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/build_phalcon
+>>>>>>> branch 'master' of https://github.com/remidiniz/openshift-diy-nginx-php.git
