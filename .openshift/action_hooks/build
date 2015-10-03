@@ -7,6 +7,7 @@ set -e
 # Not a git repository: '.'
 unset GIT_DIR
 
+
 umask 077
 
 # Load common
